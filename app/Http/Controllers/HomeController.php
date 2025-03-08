@@ -10,6 +10,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $car = Car::find(1);
+
+        dd($car->features);
 
         return view('home.index');
     }
