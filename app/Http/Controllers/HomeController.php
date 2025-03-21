@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use App\Models\FuelType;
-use App\Models\Maker;
+use App\Models\CarImage;
+use App\Models\CarType;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $car = Car::find(1);
-
-        dd($car->features);
-
         return view('home.index');
     }
 }

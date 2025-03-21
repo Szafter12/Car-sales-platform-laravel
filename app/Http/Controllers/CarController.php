@@ -62,8 +62,9 @@ class CarController extends Controller
     {
         //
     }
-    
-    public function search() {
+
+    public function search()
+    {
         return view('car.search');
     }
 }
