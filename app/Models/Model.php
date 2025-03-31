@@ -14,6 +14,8 @@ class Model extends EloquentModel
     public $incrementing = true;
     public $timestamps = false;
 
+    protected $table = 'model';
+
     protected $fillable = ['maker_id', 'name'];
 
     public function maker(): BelongsTo
