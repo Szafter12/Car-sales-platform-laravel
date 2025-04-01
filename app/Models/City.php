@@ -10,9 +10,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class City extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
 
-    protected $fillable = ['state_id', 'name'];
+    protected $fillable = ['name', 'state_id'];
 
     public function state(): BelongsTo
     {

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Maker extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
 
     protected $fillable = ['name'];

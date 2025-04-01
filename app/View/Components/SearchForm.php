@@ -11,7 +11,10 @@ class SearchForm extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct() {}
+    public function __construct()
+    {
+        //
+    }
 
     /**
      * Get the view / contents that represent the component.
@@ -20,4 +23,15 @@ class SearchForm extends Component
     {
         return view('components.search-form');
     }
+
+    /*
+     * Do not use these public properties or methods.
+     * - data
+     * - render
+     * - resolveView
+     * - shouldRender
+     * - view
+     * - withAttributes
+     * - withName
+     */
 }

@@ -63,17 +63,18 @@ class Car extends Model
 
     public function features(): HasOne
     {
-        return $this->hasOne(CarFeatures::class);
+        return $this->hasOne(CarFeatures::class, 'car_id');
+    }
+
+    public function primaryImage(): HasOne
+    {
+        return $this->hasOne(CarImage::class)
+            ->oldestOfMany('position');
     }
 
     public function images(): HasMany
     {
         return $this->hasMany(CarImage::class);
-    }
-
-    public function primaryImage(): HasOne
-    {
-        return $this->hasOne(CarImage::class)->orderBy('position')->limit(1);
     }
 
     public function favouredUsers(): BelongsToMany

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('maker_id')->constrained('makers');
-            $table->foreignId('model_id')->constrained('model');
+            $table->foreignId('model_id')->constrained('models');
             $table->integer('year');
             $table->integer('price');
             $table->string('vin', 255);
@@ -27,8 +27,8 @@ return new class extends Migration
             $table->string('phone', 45);
             $table->longText('description')->nullable();
             $table->timestamp('published_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
+            $table->timestamp('deleted_at')->nullable();
         });
     }
 
