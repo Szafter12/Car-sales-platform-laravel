@@ -1,31 +1,31 @@
 <x-guest-layout title="Signup" bodyClass="page-signup">
+    <h1 class="auth-page-title">Signup</h1>
+
     <form action="" method="post">
         <div class="form-group">
-            <input type="email" placeholder="Your Email" />
+            <input type="email" placeholder="Your Email"/>
         </div>
         <div class="form-group">
-            <input type="password" placeholder="Your Password" />
+            <input type="password" placeholder="Your Password"/>
         </div>
         <div class="form-group">
-            <input type="password" placeholder="Repeat Password" />
+            <input type="password" placeholder="Repeat Password"/>
         </div>
-        <hr />
+        <hr/>
         <div class="form-group">
-            <input type="text" placeholder="First Name" />
-        </div>
-        <div class="form-group">
-            <input type="text" placeholder="Last Name" />
+            <input type="text" placeholder="First Name"/>
         </div>
         <div class="form-group">
-            <input type="text" placeholder="Phone" />
+            <input type="text" placeholder="Last Name"/>
         </div>
-        <button class="btn btn-primary btn-login w-full">Signup</button>
+        <div class="form-group">
+            <input type="text" placeholder="Phone"/>
+        </div>
+        <button class="btn btn-primary btn-login w-full">Register</button>
     </form>
 
-    <x-slot:footerLinks>
-        <div class="login-text-dont-have-account">
-            You already have account ?
-            <a href="/signup.html">Login</a>
-        </div>
-    </x-slot:footerLinks>
+    <x-slot:footerLink>
+        Already have an account? -
+        <a href="/login.html"> Click here to login </a>
+    </x-slot:footerLink>
 </x-guest-layout>

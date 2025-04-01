@@ -23,20 +23,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Create car types with the following data using factories
-        /*
-        [
-            'Sedan',
-            'Hatchback',
-            'SUV',
-            'Pickup Truck',
-            'Minivan',
-            'Jeep',
-            'Coupe',
-            'Crossover',
-            'Sports Car'
-        ]
-        */
         CarType::factory()
             ->sequence(
                 ['name' => 'Sedan',],
@@ -52,8 +38,6 @@ class DatabaseSeeder extends Seeder
             ->count(9)
             ->create();
 
-        // Create fuel types
-        // ['Gasoline', 'Diesel', 'Electric', 'Hybrid']
         FuelType::factory()
             ->sequence(
                 ['name' => 'Gasoline'],
@@ -64,7 +48,6 @@ class DatabaseSeeder extends Seeder
             ->count(4)
             ->create();
 
-        // Create States with cities
         $states = [
             'California' => ['Los Angeles', 'San Francisco', 'San Diego', 'San Jose', 'Sacramento'],
             'Texas' => ['Houston', 'San Antonio', 'Dallas', 'Austin', 'Fort Worth'],
@@ -90,7 +73,6 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        // Create makers with their corresponding models
         $makers = [
             'Toyota' => ['Camry', 'Corolla', 'Highlander', 'RAV4', 'Prius', '4Runner', 'Sienna', 'Yaris', 'Tundra', 'Sequoia'],
             'Ford' => ['F-150', 'Escape', 'Explorer', 'Mustang', 'Fusion', 'Ranger', 'Edge', 'Expedition', 'Taurus', 'Flex'],

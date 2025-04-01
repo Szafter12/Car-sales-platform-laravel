@@ -2,7 +2,12 @@
     <main>
         <div class="container-small">
             <h1 class="car-details-page-title">Add new car</h1>
-            <form action="" method="POST" enctype="multipart/form-data" class="card add-new-car-form">
+            <form
+                action=""
+                method="POST"
+                enctype="multipart/form-data"
+                class="card add-new-car-form"
+            >
                 <div class="form-content">
                     <div class="form-details">
                         <div class="row">
@@ -180,7 +185,11 @@
                             <div class="row">
                                 <div class="col">
                                     <label class="checkbox">
-                                        <input type="checkbox" name="air_conditioning" value="1" />
+                                        <input
+                                            type="checkbox"
+                                            name="air_conditioning"
+                                            value="1"
+                                        />
                                         Air Conditioning
                                     </label>
 
@@ -190,7 +199,11 @@
                                     </label>
 
                                     <label class="checkbox">
-                                        <input type="checkbox" name="power_door_locks" value="1" />
+                                        <input
+                                            type="checkbox"
+                                            name="power_door_locks"
+                                            value="1"
+                                        />
                                         Power Door Locks
                                     </label>
 
@@ -205,7 +218,11 @@
                                     </label>
 
                                     <label class="checkbox">
-                                        <input type="checkbox" name="bluetooth_connectivity" value="1" />
+                                        <input
+                                            type="checkbox"
+                                            name="bluetooth_connectivity"
+                                            value="1"
+                                        />
                                         Bluetooth Connectivity
                                     </label>
                                 </div>
@@ -231,7 +248,11 @@
                                     </label>
 
                                     <label class="checkbox">
-                                        <input type="checkbox" name="rear_parking_sensors" value="1" />
+                                        <input
+                                            type="checkbox"
+                                            name="rear_parking_sensors"
+                                            value="1"
+                                        />
                                         Rear Parking Sensors
                                     </label>
 
@@ -256,10 +277,19 @@
                     <div class="form-images">
                         <div class="form-image-upload">
                             <div class="upload-placeholder">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" style="width: 48px">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    style="width: 48px"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                                    />
                                 </svg>
                             </div>
                             <input id="carFormImageUpload" type="file" multiple />
