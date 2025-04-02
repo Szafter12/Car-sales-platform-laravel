@@ -8,17 +8,13 @@
                 <div class="car-images-and-description">
                     <div class="car-images-carousel">
                         <div class="car-image-wrapper">
-                            <img src="/img/cars/Lexus-RX200t-2016/1.jpeg" alt="" class="car-active-image"
+                            <img src="{{ $car->primaryImage->image_path }}" alt="" class="car-active-image"
                                 id="activeImage" />
                         </div>
                         <div class="car-image-thumbnails">
-                            <img src="/img/cars/Lexus-RX200t-2016/1.jpeg" alt="" />
-                            <img src="/img/cars/Lexus-RX200t-2016/2.jpeg" alt="" />
-                            <img src="/img/cars/Lexus-RX200t-2016/3.jpeg" alt="" />
-                            <img src="/img/cars/Lexus-RX200t-2016/4.jpeg" alt="" />
-                            <img src="/img/cars/Lexus-RX200t-2016/5.jpeg" alt="" />
-                            <img src="/img/cars/Lexus-RX200t-2016/6.jpeg" alt="" />
-                            <img src="/img/cars/Lexus-RX200t-2016/7.jpeg" alt="" />
+                            @foreach ($car->images as $img)
+                                <img src="{{ $img->image_path }}" alt="" />
+                            @endforeach
                         </div>
                         <button class="carousel-button prev-button" id="prevButton">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -36,7 +32,7 @@
 
                     <div class="card car-detailed-description">
                         <h2 class="car-details-title">Detailed Description</h2>
-                        {{$car->description}}
+                        {{ $car->description }}
                     </div>
 
                     <div class="card car-detailed-description">
@@ -124,8 +120,8 @@
                     <div class="flex gap-1 my-medium">
                         <img src="/img/avatar.png" alt="" class="car-details-owner-image" />
                         <div>
-                            <h3 class="car-details-owner">John Smith</h3>
-                            <div class="text-muted">5 cars</div>
+                            <h3 class="car-details-owner">{{$car->owner->name}}</h3>
+                            <div class="text-muted">{{$car->owner->cars()->count()}} cars</div>
                         </div>
                     </div>
                     <a href="tel:+995557123***" class="car-details-phone">

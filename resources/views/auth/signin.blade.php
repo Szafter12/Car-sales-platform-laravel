@@ -12,10 +12,10 @@
         <button class="btn btn-primary btn-login w-full">Login</button>
     </form>
 
-    <x-slot:footerLinks>
+    <x-slot:footerLink>
         <div class="login-text-dont-have-account">
             You don't have account ?
             <a href="/signup.html">Signup for free</a>
         </div>
-    </x-slot:footerLinks>
+    </x-slot:footerLink>
 </x-guest-layout>
