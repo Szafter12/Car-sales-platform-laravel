@@ -75,7 +75,7 @@
                 <h2>Latest Added Cars</h2>
                 <div class="car-items-listing">
                     @foreach ($cars as $car)
-                        <x-car-item :car="$car" />
+                        <x-car-item :car="$car" :isInWatchlist="$car->favouredUsers"/>
                     @endforeach
                 </div>
             </div>
