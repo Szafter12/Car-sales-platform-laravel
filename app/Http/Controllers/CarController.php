@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -76,10 +75,9 @@ class CarController extends Controller
         $query = Car::with('primaryImage', 'city', 'maker', 'model', 'carType', 'fuelType')->where('published_at', '<', now())
             ->orderBy('published_at', 'desc');
 
-        $carCount = $query->count();
-        $cars = $query->limit(30)->get();
+        $cars = $query->paginate(15);
 
-        return view('car.search', ['carsCount' => $carCount, 'cars' => $cars]);
+        return view('car.search', ['cars' => $cars]);
     }
 
     public function watchlist()
