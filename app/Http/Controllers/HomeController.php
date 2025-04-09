@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Car;
-use Illuminate\Database\Eloquent\Factories\Sequence;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
