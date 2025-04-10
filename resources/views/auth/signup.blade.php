@@ -1,5 +1,5 @@
 <x-guest-layout title="Signup" bodyClass="page-signup">
-    <h1 class="auth-page-title">Signup</h1>
+    <h1 class="my-3 text-center">Signup</h1>
 
     <form action="" method="post">
         <div class="form-group">
@@ -26,6 +26,6 @@
 
     <x-slot:footerLink>
         Already have an account? -
-        <a href="/login.html"> Click here to login </a>
+        <a href="{{ route('login') }}"> Click here to login </a>
     </x-slot:footerLink>
 </x-guest-layout>

@@ -1,5 +1,5 @@
 <x-guest-layout title="Login" bodyClass="page-login">
-    <form action="" method="post">
+    <form action="" method="post" class="mt-5">
         <div class="form-group">
             <input type="email" placeholder="Your Email" />
         </div>
@@ -15,7 +15,7 @@
     <x-slot:footerLink>
         <div class="login-text-dont-have-account">
             You don't have account ?
-            <a href="/signup.html">Signup for free</a>
+            <a href="{{ route('signup') }}">Signup for free</a>
         </div>
     </x-slot:footerLink>
 </x-guest-layout>
