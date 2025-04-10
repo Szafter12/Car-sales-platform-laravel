@@ -18,7 +18,7 @@ class CarController extends Controller
             ->with('primaryImage', 'maker', 'model')
             ->orderBy('created_at', 'desc')
             ->paginate(15);
-        
+
         return view('car.index', ['cars' => $cars]);
     }
 
@@ -70,10 +70,59 @@ class CarController extends Controller
         //
     }
 
-    public function search()
+    public function search(Request $request)
     {
+        $maker = $request->integer('maker_id');
+        $model = $request->integer('model_id');
+        $state = $request->integer('state_id');
+        $city = $request->integer('city_id');
+        $carType = $request->integer('car_type_id');
+        $yearFrom = $request->integer('year_from');
+        $yearTo = $request->integer('year_to');
+        $priceFrom = $request->integer('price_from');
+        $priceTo = $request->integer('price_to');
+        $fuelType = $request->integer('fuel_type_id');
+        $mileage = $request->integer('mileage');
+
+
+
         $query = Car::with('primaryImage', 'city', 'maker', 'model', 'carType', 'fuelType')->where('published_at', '<', now())
             ->orderBy('published_at', 'desc');
+
+        if ($maker) {
+            $query->where('maker_id', $maker);
+        }
+        if ($model) {
+            $query->where('model_id', $model);
+        }
+        if ($state) {
+            $query->join('cities', 'cars.city_id', '=', 'cities.id')->where('state_id', $state);
+        }
+        if ($city) {
+            $query->where('city_id', $city);
+        }
+        if ($carType) {
+            $query->where('car_type_id', $carType);
+        }
+        if ($yearFrom) {
+            $query->where('year', '>=', $yearFrom);
+        }
+        if ($yearTo) {
+            $query->where('year', '<=', $yearTo);
+        }
+        if ($priceFrom) {
+            $query->where('price', '>=', $priceFrom);
+        }
+        if ($priceTo) {
+            $query->where('price', '<=', $priceTo);
+        }
+        if ($fuelType) {
+            $query->where('fuel_type_id', $fuelType);
+        }
+        if ($mileage) {
+            $query->where('mileage', '<=', $mileage);
+        }
+
 
         $cars = $query->paginate(15);
 
