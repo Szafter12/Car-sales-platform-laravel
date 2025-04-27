@@ -2,33 +2,23 @@
     <main>
         <div class="container-small">
             <h1 class="car-details-page-title">Add new car</h1>
-            <form
-                action=""
-                method="POST"
-                enctype="multipart/form-data"
-                class="card add-new-car-form"
-            >
+            <form action="" method="POST" enctype="multipart/form-data" class="card add-new-car-form">
+                @csrf
                 <div class="form-content">
                     <div class="form-details">
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
                                     <label>Maker</label>
-                                    <select>
-                                        <option value="">Maker</option>
-                                        <option value="bmw">BMW</option>
-                                        <option value="lexus">Lexus</option>
-                                        <option value="mercedes">Mercedes</option>
-                                    </select>
+                                    <x-select-maker />
                                     <p class="error-message">This field is required</p>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Model</label>
-                                    <select>
-                                        <option value="">Model</option>
-                                    </select>
+                                    <x-select-model />
+                                    <p class="error-message">This field is required</p>
                                 </div>
                             </div>
                             <div class="col">
@@ -104,19 +94,19 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input type="number" placeholder="Price" />
+                                    <input name="price" type="number" placeholder="Price" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Vin Code</label>
-                                    <input placeholder="Vin Code" />
+                                    <input name="vin" placeholder="Vin Code" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Mileage (ml)</label>
-                                    <input placeholder="Mileage" />
+                                    <input placeholder="Mileage" name="mileage" />
                                 </div>
                             </div>
                         </div>
@@ -153,17 +143,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>State/Region</label>
-                                    <select>
-                                        <option value="">State/Region</option>
-                                    </select>
+                                    <x-select-state />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>City</label>
-                                    <select>
-                                        <option value="">City</option>
-                                    </select>
+                                    <x-select-city />
                                 </div>
                             </div>
                         </div>
@@ -171,125 +157,33 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <input placeholder="Address" />
+                                    <input name="address" placeholder="Address" />
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input placeholder="Phone" />
+                                    <input name="phone" placeholder="Phone" />
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col">
-                                    <label class="checkbox">
-                                        <input
-                                            type="checkbox"
-                                            name="air_conditioning"
-                                            value="1"
-                                        />
-                                        Air Conditioning
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="power_windows" value="1" />
-                                        Power Windows
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input
-                                            type="checkbox"
-                                            name="power_door_locks"
-                                            value="1"
-                                        />
-                                        Power Door Locks
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="abs" value="1" />
-                                        ABS
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="cruise_control" value="1" />
-                                        Cruise Control
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input
-                                            type="checkbox"
-                                            name="bluetooth_connectivity"
-                                            value="1"
-                                        />
-                                        Bluetooth Connectivity
-                                    </label>
-                                </div>
-                                <div class="col">
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="remote_start" value="1" />
-                                        Remote Start
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="gps_navigation" value="1" />
-                                        GPS Navigation System
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="heated_seats" value="1" />
-                                        Heated Seats
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="climate_control" value="1" />
-                                        Climate Control
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input
-                                            type="checkbox"
-                                            name="rear_parking_sensors"
-                                            value="1"
-                                        />
-                                        Rear Parking Sensors
-                                    </label>
-
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="leather_seats" value="1" />
-                                        Leather Seats
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        <x-checkbox-car-features />
                         <div class="form-group">
                             <label>Detailed Description</label>
-                            <textarea rows="10"></textarea>
+                            <textarea rows="10" name="description"></textarea>
                         </div>
                         <div class="form-group">
-                            <label class="checkbox">
-                                <input type="checkbox" name="published" />
-                                Published
-                            </label>
+                            <label>Publish Date</label>
+                            <input type="date" name="publish_at" />
                         </div>
                     </div>
                     <div class="form-images">
                         <div class="form-image-upload">
                             <div class="upload-placeholder">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke-width="1.5"
-                                    stroke="currentColor"
-                                    style="width: 48px"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                                    />
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" style="width: 48px">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
                             </div>
                             <input id="carFormImageUpload" type="file" multiple />
