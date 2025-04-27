@@ -8,8 +8,8 @@
                 <div class="car-images-and-description">
                     <div class="car-images-carousel">
                         <div class="car-image-wrapper">
-                            <img src="{{ $car->primaryImage->image_path }}" alt="" class="car-active-image"
-                                id="activeImage" />
+                            <img src="{{ $car->primaryImage?->image_path ?: '/img/noImg.jpeg' }}" alt=""
+                                class="car-active-image" id="activeImage" />
                         </div>
                         <div class="car-image-thumbnails">
                             @foreach ($car->images as $img)
@@ -120,8 +120,8 @@
                     <div class="flex gap-1 my-medium">
                         <img src="/img/avatar.png" alt="" class="car-details-owner-image" />
                         <div>
-                            <h3 class="car-details-owner">{{$car->owner->name}}</h3>
-                            <div class="text-muted">{{$car->owner->cars()->count()}} cars</div>
+                            <h3 class="car-details-owner">{{ $car->owner->name }}</h3>
+                            <div class="text-muted">{{ $car->owner->cars()->count() }} cars</div>
                         </div>
                     </div>
                     <a href="tel:+995557123***" class="car-details-phone">

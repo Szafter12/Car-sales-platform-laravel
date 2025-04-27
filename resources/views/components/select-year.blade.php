@@ -1,7 +1,7 @@
 @php
     $year = date('Y');
 @endphp
-<select>
+<select name="year" id="year">
     <option value="">Year</option>
     @for ($i = $year; $i >= 1990; $i--)
         <option value="{{ $i }}">{{ $i }}</option>

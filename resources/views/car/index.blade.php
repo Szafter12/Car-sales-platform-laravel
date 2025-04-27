@@ -19,8 +19,8 @@
                                 @forelse ($cars as $car)
                                     <tr>
                                         <td>
-                                            <img src="{{ $car->primaryImage->image_path }}" alt=""
-                                                class="my-cars-img-thumbnail" />
+                                            <img src="{{ $car->primaryImage?->image_path ?: '/img/noImg.jpeg' }}"
+                                                alt="" class="my-cars-img-thumbnail" />
                                         </td>
                                         <td>{{ $car->year }} - {{ $car->maker->name }} {{ $car->model->name }}</td>
                                         <td>{{ $car->getCreateDate() }}</td>

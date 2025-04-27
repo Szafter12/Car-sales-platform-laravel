@@ -2,7 +2,7 @@
     @foreach ($fuels as $fuel)
         <div class="col">
             <label class="inline-radio">
-                <input type="radio" name="fuel_type" value="{{ $fuel->id }}" />
+                <input type="radio" name="fuel_type_id" value="{{ $fuel->id }}" />
                 {{ $fuel->name }}
             </label>
         </div>

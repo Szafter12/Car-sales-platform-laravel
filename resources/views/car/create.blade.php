@@ -2,7 +2,8 @@
     <main>
         <div class="container-small">
             <h1 class="car-details-page-title">Add new car</h1>
-            <form action="" method="POST" enctype="multipart/form-data" class="card add-new-car-form">
+            <form action="{{ route('car.store') }}" method="POST" enctype="multipart/form-data"
+                class="card add-new-car-form">
                 @csrf
                 <div class="form-content">
                     <div class="form-details">
