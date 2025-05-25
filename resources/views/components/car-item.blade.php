@@ -1,7 +1,7 @@
 @props(['car', 'isInWatchlist' => false])
 <div class="car-item card">
     <a href="{{ route('car.show', $car) }}">
-        <img src="{{ $car->primaryImage?->image_path ?: '/img/noImg.jpeg' }}" alt=""
+        <img src="{{ $car->primaryImage?->getUrl() ?: '/img/noImg.jpeg' }}" alt=""
             class="car-item-img rounded-t" />
     </a>
     <div class="p-medium">

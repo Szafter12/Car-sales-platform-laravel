@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="{{ $car->maker->name }} {{ $car->model->name }} - {{ $car->year }}">
     <main>
         <div class="container">
             <h1 class="car-details-page-title">{{ $car->maker->name }} {{ $car->model->name }} - {{ $car->year }}</h1>
@@ -8,12 +8,12 @@
                 <div class="car-images-and-description">
                     <div class="car-images-carousel">
                         <div class="car-image-wrapper">
-                            <img src="{{ $car->primaryImage?->image_path ?: '/img/noImg.jpeg' }}" alt=""
+                            <img src="{{ $car->primaryImage?->getUrl() ?: '/img/noImg.jpeg' }}" alt=""
                                 class="car-active-image" id="activeImage" />
                         </div>
                         <div class="car-image-thumbnails">
                             @foreach ($car->images as $img)
-                                <img src="{{ $img->image_path }}" alt="" />
+                                <img src="{{ $img->getUrl() ?: '/img/noImg.jpeg' }}" alt="" />
                             @endforeach
                         </div>
                         <button class="carousel-button prev-button" id="prevButton">
