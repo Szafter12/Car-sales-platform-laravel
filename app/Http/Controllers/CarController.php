@@ -25,7 +25,7 @@ class CarController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         return view('car.create');
     }
@@ -35,7 +35,11 @@ class CarController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->validate([
+            'maker_id' => 'required',
+            'model_id' => 'required',
+            'year' => ['required', 'integer', 'min:1900', 'max:'. date('Y')]
+        ]);
         $featuresData = $data['features'] ?? [];
         $images = $request->file('images') ?: [];
 
