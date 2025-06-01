@@ -139,16 +139,18 @@
                             <textarea rows="10" name="description">{{ old('description') }}</textarea>
                             <p class="error-message"> {{ $errors->first('description') }}</p>
                         </div>
-                        <div
-                            class="form-group @error('publish_at')
-                            has-error
-                        @enderror">
+                        <div class="form-group">
                             <label>Publish Date</label>
                             <input type="date" name="publish_at" value="{{ old('publish_at') }}" />
                             <p class="error-message"> {{ $errors->first('publish_at') }}</p>
                         </div>
                     </div>
                     <div class="form-images">
+                        @foreach ($errors->get('images.*') as $imageErrors)
+                            @foreach ($imageErrors as $err)
+                                <div class="text-error mb-small">{{ $err }}</div>
+                            @endforeach
+                        @endforeach
                         <div class="form-image-upload">
                             <div class="upload-placeholder">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
