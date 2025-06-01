@@ -15,7 +15,9 @@
     ];
 
 @endphp
-<div class="form-group">
+<div class="form-group @error('features')
+    has-error
+@enderror">
     <div class="row">
         <div class="col">
             @foreach ($features as $key => $value)
@@ -30,4 +32,5 @@
             @endforeach
         </div>
     </div>
+    <p class="error-message"> {{ $errors->first('features') }}</p>
 </div>
