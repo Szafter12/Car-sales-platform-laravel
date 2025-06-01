@@ -141,8 +141,8 @@
                         </div>
                         <div class="form-group">
                             <label>Publish Date</label>
-                            <input type="date" name="publish_at" value="{{ old('publish_at') }}" />
-                            <p class="error-message"> {{ $errors->first('publish_at') }}</p>
+                            <input type="date" name="published_at" value="{{ old('published_at') }}" />
+                            <p class="error-message"> {{ $errors->first('published_at') }}</p>
                         </div>
                     </div>
                     <div class="form-images">

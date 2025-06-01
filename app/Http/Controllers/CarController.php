@@ -26,7 +26,7 @@ class CarController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
         return view('car.create');
     }
@@ -71,7 +71,7 @@ class CarController extends Controller
      */
     public function edit(Car $car)
     {
-        return view('car.edit');
+        return view('car.edit', ['car' => $car]);
     }
 
     /**

@@ -31,10 +31,11 @@ class StoreCarRequest extends FormRequest
             'car_type_id' => 'required|exists:car_types,id',
             'fuel_type_id' => 'required|exists:fuel_types,id',
             'city_id' => 'required|exists:cities,id',
+            'state_id' => 'required|exists:states,id',
             'address' => 'required|string',
             'phone' => 'required|min:9|string',
             'description' => 'nullable|string',
-            'publish_at' => 'nullable|string',
+            'published_at' => 'nullable|string',
             'features' => 'array',
             'features.*' => 'string',
             'images' => 'array',
@@ -42,13 +43,15 @@ class StoreCarRequest extends FormRequest
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
         return [
             'required' => 'This field is required',
         ];
     }
 
-    public function attributes() {
+    public function attributes()
+    {
         return [
             'maker_id' => 'maker',
             'model_id' => 'model',
