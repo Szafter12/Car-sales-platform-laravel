@@ -33,8 +33,8 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <tr colspan="3" class="text-center p-large">
-                                            There are no images</a>
+                                        <tr class="text-center p-large">
+                                            <td colspan="3" class="text-center w-100 py-3">There are no images</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

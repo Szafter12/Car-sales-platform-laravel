@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCarRequest;
 use App\Models\Car;
 use App\Models\User;
+use Illuminate\Container\Attributes\Storage as AttributesStorage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -181,12 +183,38 @@ class CarController extends Controller
         return view('car.watchlist', ['cars' => $cars]);
     }
 
-    public function carImages(Car $car) {
-        
+    public function carImages(Car $car)
+    {
+
         return view('car.images', ['car' => $car]);
     }
 
-    public function updateImages(Car $car) {
-        
+    public function updateImages(Request $request, Car $car)
+    {
+        $data = $request->validate([
+            'delete_images' => 'array',
+            'delete_images.*' => 'integer',
+            'positions' => 'array',
+            'positions.*' => 'integer'
+        ]);
+
+        $deleteImages = $data['delete_images'] ?? [];
+        $positions = $data['positions'] ?? [];
+
+        $imagesToDelete = $car->images()->whereIn('id', $deleteImages)->get();
+
+        foreach ($imagesToDelete as $img) {
+            if (Storage::exists($img->image_path)) {
+                Storage::delete($img->image_path);
+            }
+        }
+
+        $car->images()->whereIn('id', $deleteImages)->delete();
+
+        foreach ($positions as $id => $pos) {
+            $car->images()->where('id', $id)->update(['position' => $pos]);
+        }
+
+        return redirect()->back();
     }
 }
