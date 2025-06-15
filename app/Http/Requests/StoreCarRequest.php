@@ -39,7 +39,7 @@ class StoreCarRequest extends FormRequest
             'features' => 'array',
             'features.*' => 'string',
             'images' => 'array',
-            'images.*' => 'image|mimes:jpeg,png,jpg|max:2'
+            'images.*' => 'image|mimes:jpeg,png,jpg|max:2000'
         ];
     }
 
