@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/signup', [SignupController::class, 'create'])->name('signup');
+Route::post('/signup', [SignupController::class, 'store'])->name('signup.store');
 
 Route::get('/signin', [SigninController::class, 'create'])->name('login');
+Route::post('/signin', [SigninController::class, 'store'])->name('login.store');
 
 Route::get('car/search', [CarController::class, 'search'])->name('car.search');
 

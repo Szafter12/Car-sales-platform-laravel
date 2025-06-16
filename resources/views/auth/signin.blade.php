@@ -1,10 +1,14 @@
 <x-guest-layout title="Login" bodyClass="page-login">
-    <form action="" method="post" class="mt-5">
-        <div class="form-group">
-            <input type="email" placeholder="Your Email" />
+    <h1 class="my-3 text-center fs-2">Sign in</h1>
+    <form action="{{ route('login.store') }}" method="POST" class="mt-5">
+        @csrf
+        <div class="form-group @error('email') has-error @enderror">
+            <input type="email" placeholder="Your Email" name="email" value="{{old('email')}}"/>
+            <p class="error-message">{{ $errors->first('email') }}</p>
         </div>
-        <div class="form-group">
-            <input type="password" placeholder="Your Password" />
+        <div class="form-group @error('password') has-error @enderror">
+            <input type="password" placeholder="Your Password" name="password" />
+            <p class="error-message">{{ $errors->first('password') }}</p>
         </div>
         <div class="text-right mb-medium">
             <a href="/password-reset.html" class="auth-page-password-reset">Reset Password</a>
