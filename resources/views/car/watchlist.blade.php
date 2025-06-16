@@ -1,6 +1,5 @@
-<x-app-layout>
+<x-app-layout title="watchlist">
     <main>
-        <!-- New Cars -->
         <section>
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
@@ -17,6 +16,5 @@
                 {{ $cars->onEachSide(1)->links() }}
             </div>
         </section>
-        <!--/ New Cars -->
     </main>
 </x-app-layout>

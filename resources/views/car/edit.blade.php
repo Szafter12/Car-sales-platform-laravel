@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Edit car">
     <main>
         <div class="container-small">
             <h1 class="car-details-page-title fs-3 text-black">Edit car: {{ $car->getTitle() }}</h1>

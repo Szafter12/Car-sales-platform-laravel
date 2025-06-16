@@ -1,4 +1,4 @@
-<x-app-layout bodyClass='page-my-cars'>
+<x-app-layout title="Edit car images" bodyClass='page-my-cars'>
     <main>
         <div>
             <div class="container">
