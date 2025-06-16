@@ -19,4 +19,5 @@ Route::get('car/watchlist', [CarController::class, 'watchlist'])->name('car.watc
 Route::resource('car', CarController::class);
 
 Route::get('/car/{car}/images', [CarController::class, 'carImages'])->name('car.images');
+Route::post('/car/{car}/images', [CarController::class, 'addImages'])->name('car.addImages');
 Route::put('/car/{car}/images', [CarController::class, 'updateImages'])->name('car.updateImages');

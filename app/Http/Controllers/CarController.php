@@ -5,15 +5,12 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCarRequest;
 use App\Models\Car;
 use App\Models\User;
-use Illuminate\Container\Attributes\Storage as AttributesStorage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $cars = User::find(1)
@@ -24,18 +21,10 @@ class CarController extends Controller
 
         return view('car.index', ['cars' => $cars]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('car.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreCarRequest $request)
     {
         $data = $request->validated();
@@ -55,10 +44,6 @@ class CarController extends Controller
 
         return redirect()->route('car.index');
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Car $car)
     {
         if (!$car->published_at) {
@@ -67,18 +52,10 @@ class CarController extends Controller
 
         return view('car.show', ['car' => $car]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Car $car)
     {
         return view('car.edit', ['car' => $car]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(StoreCarRequest $request, Car $car)
     {
         $data = $request->validated();
@@ -103,10 +80,6 @@ class CarController extends Controller
 
         return redirect()->route('car.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Car $car)
     {
         $car->delete();
@@ -213,6 +186,25 @@ class CarController extends Controller
 
         foreach ($positions as $id => $pos) {
             $car->images()->where('id', $id)->update(['position' => $pos]);
+        }
+
+        return redirect()->back();
+    }
+
+    public function addImages(Request $request, Car $car)
+    {
+        $images = $request->file('images') ?? [];
+
+        $position = $car->images()->max('position') ?? 1;
+
+        foreach ($images as $img) {
+            $path = $img->store('images', 'public');
+            $car->images()->create([
+                'image_path' => $path,
+                'position' => $position
+            ]);
+
+            $position++;
         }
 
         return redirect()->back();
