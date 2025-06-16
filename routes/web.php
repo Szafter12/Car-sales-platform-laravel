@@ -13,6 +13,7 @@ Route::post('/signup', [SignupController::class, 'store'])->name('signup.store')
 
 Route::get('/signin', [SigninController::class, 'create'])->name('login');
 Route::post('/signin', [SigninController::class, 'store'])->name('login.store');
+Route::post('/logout', [SigninController::class, 'logout'])->name('logout');
 
 Route::get('car/search', [CarController::class, 'search'])->name('car.search');
 
