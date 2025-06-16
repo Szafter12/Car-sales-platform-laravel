@@ -1,4 +1,4 @@
-<x-app-layout bodyClass='page-my-cars'>
+<x-app-layout title="My cars" bodyClass='page-my-cars'>
     <main>
         <div>
             <div class="container">
@@ -66,8 +66,10 @@
                                         </td>
                                     </tr>
                                 @empty
-                                    <tr colspan="5" class="text-center p-large">
-                                        You don'y have cars yet. <a href="{{ route('car.create') }}">Add new car</a>
+                                    <tr class="text-center p-large">
+                                        <td colspan="5" rowspan="2">
+                                            You don'y have cars yet. <a href="{{ route('car.create') }}">Add new car</a>
+                                        </td>
                                     </tr>
                                 @endforelse
                             </tbody>
