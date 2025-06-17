@@ -173,7 +173,10 @@ class CarController extends Controller
 
     public function carImages(Car $car)
     {
-
+        if ($car->user_id !== Auth::id()) {
+            abort(403);
+        }
+        
         return view('car.images', ['car' => $car]);
     }
 
