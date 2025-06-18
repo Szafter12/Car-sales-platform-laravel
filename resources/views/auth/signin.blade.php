@@ -1,5 +1,6 @@
 <x-guest-layout title="Login" bodyClass="page-login">
     <h1 class="my-3 text-center fs-2">Sign in</h1>
+    {{ session('error') }}
     <main>
         <form action="{{ route('login.store') }}" method="POST" class="mt-5">
             @csrf
