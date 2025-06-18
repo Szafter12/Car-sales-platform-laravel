@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Verify email">
     <div class="container">
         <div class="card p-large my-large">
             <h2>Verify Your Email Address</h2>
