@@ -2,7 +2,7 @@
     <main>
         <div>
             <div class="container">
-                <h1 class="car-details-page-title fs-2 text-black my-3">Manage images for {{ $car->getTitle() }}</h1>
+                <h1 class="car-details-page-title fs-3 text-black my-3">Manage images for {{ $car->getTitle() }}</h1>
                 <div class="car-images-wrapper">
                     <form action="{{ route('car.updateImages', $car) }}" method="POST"
                         class="card p-3 form-update-images">

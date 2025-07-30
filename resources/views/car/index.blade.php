@@ -2,7 +2,7 @@
     <main>
         <div>
             <div class="container">
-                <h1 class="car-details-page-title fs-2 text-black my-3">My Cars</h1>
+                <h1 class="car-details-page-title fs-3 text-black my-3">My Cars</h1>
                 <div class="card p-medium">
                     <div class="table-responsive">
                         <table class="table">

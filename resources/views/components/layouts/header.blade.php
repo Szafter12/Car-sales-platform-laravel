@@ -35,6 +35,9 @@
                             <a href="{{ route('car.watchlist') }}">My Favourite Cars</a>
                         </li>
                         <li>
+                            <a href="{{route("profile.index")}}">My Profile</a>
+                        </li>
+                        <li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <button>Logout</button>

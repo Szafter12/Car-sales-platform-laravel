@@ -1,7 +1,7 @@
 <x-app-layout title="Add new car">
     <main>
         <div class="container-small">
-            <h1 class="car-details-page-title">Add new car</h1>
+            <h1 class="fs-3">Add new car</h1>
             <form action="{{ route('car.store') }}" method="POST" enctype="multipart/form-data"
                 class="card add-new-car-form">
                 @csrf
