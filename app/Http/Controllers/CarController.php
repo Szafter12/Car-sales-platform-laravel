@@ -160,17 +160,6 @@ class CarController extends Controller
 
         return view('car.search', ['cars' => $cars]);
     }
-
-    public function watchlist()
-    {
-        $cars = Auth::user()
-            ->favouriteCars()
-            ->with('primaryImage', 'city', 'maker', 'model', 'carType', 'fuelType')
-            ->paginate(15);
-
-        return view('car.watchlist', ['cars' => $cars]);
-    }
-
     public function carImages(Car $car)
     {
         if ($car->user_id !== Auth::id()) {
