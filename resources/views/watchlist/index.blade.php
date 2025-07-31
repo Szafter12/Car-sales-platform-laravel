@@ -3,7 +3,7 @@
         <section>
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h1 class="fs-3">My Favourite Cars</h1>
+                    <h1 class="fs-3 mb-5">My Favourite Cars</h1>
                     <div>
                         Showing {{ $cars->firstItem() }} to {{ $cars->lastItem() }} of {{ $cars->total() }}
                     </div>

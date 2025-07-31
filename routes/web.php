@@ -3,6 +3,7 @@
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WatchlistController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -10,8 +11,11 @@ Route::get('/car/search', [CarController::class, 'search'])->name('car.search');
 
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
-        Route::get('/car/watchlist', [CarController::class, 'watchlist'])
-            ->name('car.watchlist');
+        Route::get('/watchlist', [WatchlistController::class, 'index'])
+            ->name('watchlist.index');
+        Route::post('watchlist/{car}', [WatchlistController::class, 'storeDestroy'])
+            ->name('watchlist.storeDestroy');
+
         Route::resource('car', CarController::class)->except(['show']);
         Route::get('/car/{car}/images', [CarController::class, 'carImages'])
             ->name('car.images');

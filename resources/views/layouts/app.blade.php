@@ -12,4 +12,5 @@
     @endsession
 
     {{ $slot }}
+    <x-layouts.footer />
 </x-base-layout>

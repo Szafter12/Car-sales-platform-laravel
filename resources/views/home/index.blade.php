@@ -72,7 +72,7 @@
         <!-- New Cars -->
         <section>
             <div class="container">
-                <h2 class="py-3">Latest Added Cars</h2>
+                <h2 class="py-3 fs-2">Latest Added Cars</h2>
                 <div class="car-items-listing">
                     @foreach ($cars as $car)
                         <x-car-item :car="$car" :isInWatchlist="$car->favouredUsers"/>
