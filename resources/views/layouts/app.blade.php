@@ -10,7 +10,9 @@
             </div>
         </div>
     @endsession
-
-    {{ $slot }}
+    
+    <main class="main-content">
+        {{ $slot }}
+    </main>
     <x-layouts.footer />
 </x-base-layout>

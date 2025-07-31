@@ -324,6 +324,7 @@ select:disabled {
 .form-group .checkbox {
     display: flex;
     align-items: center;
+    gap: 10px;
     margin-bottom: 0.5rem;
     font-weight: normal;
 }
@@ -365,7 +366,10 @@ body {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
     margin: 0;
+    height: 100vh !important;
     color: var(--text-color);
     background-color: var(--body-bg);
     font-size: 14px;
@@ -501,6 +505,7 @@ body.page-signup {
 
 main {
     padding: 1rem;
+    flex: 1;
 }
 
 .card {
@@ -974,6 +979,10 @@ a.pagination-item:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
+.main-content {
+    flex: 1;
+}
+
 .car-details-title {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -1030,7 +1039,7 @@ a.pagination-item:hover {
 }
 
 footer p {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 footer .color {
