@@ -8,7 +8,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $cars = Car::with('primaryImage', 'city', 'maker', 'model', 'carType', 'fuelType')->where('published_at', '<', now())
+        $cars = Car::where('published_at', '<=', now())
+            ->with(['primaryImage', 'city', 'maker', 'model', 'carType', 'fuelType', 'favouredUsers'])
             ->orderBy('published_at', 'desc')
             ->limit(30)
             ->get();
