@@ -1,3 +1,5 @@
+import './bootstrap'
+
 document.addEventListener("DOMContentLoaded", function () {
     const initSlider = () => {
         const slides = document.querySelectorAll(".hero-slide");
