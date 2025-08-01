@@ -1,4 +1,5 @@
-import './bootstrap'
+import axios from "axios";
+import "./bootstrap";
 
 document.addEventListener("DOMContentLoaded", function () {
     const initSlider = () => {
@@ -226,6 +227,33 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("#year").textContent = date.getFullYear();
     };
 
+    const initAddToWatchlist = () => {
+        const buttons = document.querySelectorAll(".btn-heart");
+
+        if (!buttons) return;
+
+        buttons.forEach((button) => {
+            button.addEventListener("click", (e) => {
+                const button = e.currentTarget;
+                const url = button.dataset.url;
+                axios
+                    .post(url)
+                    .then((res) => {
+                        const toShow = button.querySelector("svg.hidden");
+                        const toHide = button.querySelector("svg:not(.hidden)");
+
+                        toShow.classList.remove("hidden");
+                        toHide.classList.add("hidden");
+                        alert(res.data.message);
+                    })
+                    .catch((error) => {
+                        alert("Internal Server Error. Please try again later!");
+                    });
+            });
+        });
+    };
+
+    initAddToWatchlist();
     initSlider();
     initImagePicker();
     initMobileNavbar();
