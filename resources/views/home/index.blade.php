@@ -1,4 +1,4 @@
-<x-app-layout title="Home Page">
+<x-app-layout title="Home">
     <!-- Home Slider -->
     <section class="hero-slider">
         <!-- Carousel wrapper -->
@@ -75,7 +75,7 @@
                 <h2 class="py-3 fs-2">Latest Added Cars</h2>
                 <div class="car-items-listing">
                     @foreach ($cars as $car)
-                        <x-car-item :car="$car" :isInWatchlist="$car->favouredUsers"/>
+                        <x-car-item :car="$car" :isInWatchlist="$car->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())"/>
                     @endforeach
                 </div>
             </div>

@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Profile">
     <main>
         <div class="container-small">
             <h1 class="fs-3">My Profile</h1>

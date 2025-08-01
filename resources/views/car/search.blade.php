@@ -1,4 +1,4 @@
-<x-app-layout title="Search cars">
+<x-app-layout title="Search">
     <main>
         <!-- Found Cars -->
         <section>
@@ -119,7 +119,7 @@
                         <div class="car-items-listing">
                             @if ($cars->count() > 0)
                                 @foreach ($cars as $car)
-                                    <x-car-item :$car />
+                                    <x-car-item :$car :isInWatchlist="$car->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())"/>
                                 @endforeach
                             @else
                                 <div class="p-large text-center">
