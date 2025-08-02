@@ -19,6 +19,14 @@ class WatchlistController extends Controller
     }
 
     public function storeDestroy(Car $car) {
+
+        if (!Auth::user()) {
+            return response()->json([
+                'success' => false,
+                'message' => "You need to login first"
+            ]);
+        }
+
         $user = Auth::user();
 
         $isCarExistsInFav = $user->favouriteCars()->where('car_id', $car->id)->exists();
@@ -27,7 +35,7 @@ class WatchlistController extends Controller
             $user->favouriteCars()->detach($car);
             
             return response()->json([
-                'added' => false,
+                'success' => true,
                 'message' => 'Car was removed from watchlist'
             ]);
         }
@@ -35,7 +43,7 @@ class WatchlistController extends Controller
         $user->favouriteCars()->attach($car);
 
         return response()->json([
-                'added' => true,
+                'success' => true,
                 'message' => 'Car added to watchlist'
             ]);
     }

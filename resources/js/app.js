@@ -236,18 +236,42 @@ document.addEventListener("DOMContentLoaded", function () {
             button.addEventListener("click", (e) => {
                 const button = e.currentTarget;
                 const url = button.dataset.url;
+                const messageBox = document.querySelector(".message-box");
+
+                function showMessage(message, bgClass) {
+                    messageBox.classList.add(bgClass);
+                    messageBox.querySelector(".message-body").textContent =
+                        message;
+                    messageBox.classList.add("message-show");
+
+                    setTimeout(() => {
+                        messageBox.classList.remove("message-show");
+                        messageBox.classList.remove(bgClass);
+                    }, 3000);
+                }
+
                 axios
                     .post(url)
                     .then((res) => {
+                        if (!res.data.success) {
+                            showMessage(res.data.message, "message-box--error");
+                            return;
+                        }
                         const toShow = button.querySelector("svg.hidden");
                         const toHide = button.querySelector("svg:not(.hidden)");
 
                         toShow.classList.remove("hidden");
                         toHide.classList.add("hidden");
-                        alert(res.data.message);
+
+                        showMessage(res.data.message, "message-box--success");
+                        return;
                     })
                     .catch((error) => {
-                        alert("Internal Server Error. Please try again later!");
+                        showMessage(
+                            "Internal server error, try again later",
+                            "message-box--error"
+                        );
+                        return;
                     });
             });
         });

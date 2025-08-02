@@ -13,8 +13,6 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['verified'])->group(function () {
         Route::get('/watchlist', [WatchlistController::class, 'index'])
             ->name('watchlist.index');
-        Route::post('watchlist/{car}', [WatchlistController::class, 'storeDestroy'])
-            ->name('watchlist.storeDestroy');
 
         Route::resource('car', CarController::class)->except(['show']);
         Route::get('/car/{car}/images', [CarController::class, 'carImages'])
@@ -30,5 +28,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/car/{car}', [CarController::class, 'show'])->name('car.show');
+Route::post('watchlist/{car}', [WatchlistController::class, 'storeDestroy'])
+    ->name('watchlist.storeDestroy');
 
 require_once __DIR__ . "/auth.php";
