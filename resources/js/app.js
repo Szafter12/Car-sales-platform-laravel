@@ -236,7 +236,15 @@ document.addEventListener("DOMContentLoaded", function () {
             button.addEventListener("click", (e) => {
                 const button = e.currentTarget;
                 const url = button.dataset.url;
-                const messageBox = document.querySelector(".message-box");
+                const messageBox = document.createElement("div");
+                messageBox.classList.add("message-box");
+                const messageBody = document.createElement("p");
+                messageBody.classList.add("message-body");
+                messageBody.classList.add("fs-5");
+                messageBox.appendChild(messageBody);
+                document
+                    .querySelector(".message-box-container")
+                    .append(messageBox);
 
                 function showMessage(message, bgClass) {
                     messageBox.classList.add(bgClass);
@@ -247,6 +255,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     setTimeout(() => {
                         messageBox.classList.remove("message-show");
                         messageBox.classList.remove(bgClass);
+                        document
+                            .querySelector(".message-box-container")
+                            .removeChild(messageBox);
                     }, 3000);
                 }
 
@@ -277,6 +288,26 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
+    const blurPhoneNumber = () => {
+        const phoneBlock = document.querySelector(".car-details-phone");
+
+        if (!phoneBlock) {
+            return;
+        }
+
+        const viewNumberBtn = document.querySelector(".car-details-phone-view");
+        phoneBlock.setAttribute("href", "");
+        const number = phoneBlock.querySelector("span").textContent.trim();
+        const maskedNumber = number.slice(0, -6) + "*******";
+        phoneBlock.querySelector("span").textContent = maskedNumber;
+
+        viewNumberBtn.addEventListener("click", () => {
+            phoneBlock.querySelector("span").textContent = number;
+            phoneBlock.setAttribute("href", "tel:" + number);
+        });
+    };
+
+    blurPhoneNumber();
     initAddToWatchlist();
     initSlider();
     initImagePicker();

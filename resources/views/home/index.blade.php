@@ -7,18 +7,18 @@
             <div class="hero-slide">
                 <div class="container">
                     <div class="slide-content">
-                        <h1 class="hero-slider-title">
+                        <h1 class="hero-slider-title mb-5">
                             Buy <strong>The Best Cars</strong> <br />
                             in your region
                         </h1>
                         <div class="hero-slider-content">
-                            <p>
+                            <p class="mb-5">
                                 Use powerful search tool to find your desired cars based on
                                 multiple search criteria: Make, Model, Year, Price Range, Car
                                 Type, etc...
                             </p>
 
-                            <a href="{{route('car.index')}}" class="btn btn-hero-slider">Find the car</a>
+                            <a href="{{ route('car.search') }}" class="btn btn-hero-slider">Find the car</a>
                         </div>
                     </div>
                     <div class="slide-image">
@@ -30,17 +30,17 @@
             <div class="hero-slide">
                 <div class="flex container">
                     <div class="slide-content">
-                        <h2 class="hero-slider-title">
+                        <h2 class="hero-slider-title mb-5">
                             Do you want to <br />
                             <strong>sell your car?</strong>
                         </h2>
                         <div class="hero-slider-content">
-                            <p>
+                            <p class="mb-5">
                                 Submit your car in our user friendly interface, describe it,
                                 upload photos and the perfect buyer will find it...
                             </p>
 
-                            <button class="btn btn-hero-slider">Add Your Car</button>
+                            <a href="{{ route('car.create') }}" class="btn btn-hero-slider">Add Your Car</a>
                         </div>
                     </div>
                     <div class="slide-image">
@@ -73,11 +73,17 @@
         <section>
             <div class="container">
                 <h2 class="py-3 fs-2">Latest Added Cars</h2>
-                <div class="car-items-listing">
-                    @foreach ($cars as $car)
-                        <x-car-item :car="$car" :isInWatchlist="$car->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())"/>
-                    @endforeach
-                </div>
+                @if ($cars->count() > 0)
+                    <div class="car-items-listing">
+                        @foreach ($cars as $car)
+                            <x-car-item :car="$car" :isInWatchlist="$car->favouredUsers->contains(\Illuminate\Support\Facades\Auth::user())" />
+                        @endforeach
+                    </div>
+                @else
+                    <div class="text-center p-5">
+                        There are no published cars.
+                    </div>
+                @endif
             </div>
         </section>
         <!--/ New Cars -->

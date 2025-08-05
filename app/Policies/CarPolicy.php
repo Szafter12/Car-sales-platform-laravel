@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Models\Car;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use Illuminate\Http\RedirectResponse;
 
 class CarPolicy
 {

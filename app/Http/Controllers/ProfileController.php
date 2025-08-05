@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'max:255', 'unique:users,phone' . $request->user()->id]
+            'phone' => ['required', 'string', 'min:9', 'unique:users,phone' . $request->user()->id]
         ];
 
         $user = $request->user();

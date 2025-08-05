@@ -151,12 +151,13 @@
                         </div>
                     </div>
                     <div class="form-images">
-                        <p class="mb-3">Manage your images <a href="#">From here</a></p>
+                        <p class="mb-3">Manage your images <a href="{{ route('car.updateImages', $car) }}">From
+                                here</a></p>
 
                         <div class="car-form-images">
                             @foreach ($car->images as $image)
                                 <div class="car-form-image-preview">
-                                    <img src="{{$image->getUrl()}}" alt="">
+                                    <img src="{{ $image->getUrl() }}" alt="">
                                 </div>
                             @endforeach
                         </div>
