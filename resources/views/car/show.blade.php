@@ -130,8 +130,8 @@
                     <hr />
 
                     <div class="flex gap-1 my-medium">
-                        <img src="/img/avatar.png" alt="" class="car-details-owner-image" />
-                        <div>
+                        <img class="user-avatar user-avatar--car" src="{{$car->owner?->getAvatarUrl() ?: '/img/avatar.png'}}" alt="User avatar" class="car-details-owner-image" />
+                        <div class="d-flex flex-column justify-center ms-4">
                             <h3 class="car-details-owner">{{ $car->owner->name }}</h3>
                             <div class="text-muted">{{ $car->owner->cars()->count() }} cars</div>
                         </div>

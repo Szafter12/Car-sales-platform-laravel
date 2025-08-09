@@ -2,10 +2,18 @@
     <main>
         <div class="container-small">
             <h1 class="fs-3">My Profile</h1>
-            <form action="{{ route('profile.update') }}" method="POST" class="card p-large my-large">
+            <form action="{{ route('profile.update') }}" method="POST" class="card p-large my-large" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
+                <div class="form-group d-flex justify-center align-items-center flex-column @error('avatar') has-error @enderror">
+                    <label>Profile picture</label>
+                    <img class="user-avatar" id="avatarPlaceholder" src="{{$user?->getAvatarUrl() ?: '/img/avatar.png'}}" alt="User avatar">
+                    <input type="file" id="avatarInput" name="avatar" class="d-none">
+                    <p class="error-message">
+                        {{ $errors->first('avatar') }}
+                    </p>
+                </div>
                 <div class="form-group @error('name') has-error @enderror">
                     <label>Name</label>
                     <input type="text" name="name" placeholder="Your Name" value="{{ old('name', $user->name) }}">

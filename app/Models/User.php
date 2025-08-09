@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -23,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'phone',
+        'avatar_path',
         'google_id',
         'facebook_id',
         'password',
@@ -55,6 +57,19 @@ class User extends Authenticatable implements MustVerifyEmail
     public function isOauthUser(): bool
     {
         return !$this->password;
+    }
+
+    public function getAvatarUrl()
+    {
+        if (empty($this->avatar_path)) {
+            return null;
+        }
+
+        if (str_starts_with($this->avatar_path, 'http')) {
+            return $this->avatar_path;
+        }
+
+        return Storage::url($this->avatar_path);
     }
 
     public function favouriteCars(): BelongsToMany

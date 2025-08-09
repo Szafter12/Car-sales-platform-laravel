@@ -307,6 +307,30 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
+    function avatarReader() {
+        const avatarPlaceholder = document.querySelector("#avatarPlaceholder");
+        const avatarInput = document.querySelector("#avatarInput");
+
+        if (!avatarPlaceholder || !avatarInput) {
+            return;
+        }
+
+        avatarPlaceholder.addEventListener("click", () => {
+            avatarInput.click();
+        });
+
+        avatarInput.addEventListener("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    avatarPlaceholder.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
     blurPhoneNumber();
     initAddToWatchlist();
     initSlider();
@@ -318,6 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initCascadingDropdown("#stateSelect", "#citySelect");
     initSortingDropdown();
     getYear();
+    avatarReader();
 
     ScrollReveal().reveal(".hero-slide.active .hero-slider-title", {
         delay: 200,
