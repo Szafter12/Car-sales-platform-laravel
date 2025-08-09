@@ -43,7 +43,7 @@ class ProfileController extends Controller
             $user_data['email'] = $data['email'];
         }
 
-        if ($user->avatar_path) {
+        if ($user->avatar_path && !str_starts_with($user->avatar_path, 'http')) {
             Storage::disk('public')->delete($user->avatar_path);
         }
 
