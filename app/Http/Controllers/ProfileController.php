@@ -20,7 +20,7 @@ class ProfileController extends Controller
         $rules = [
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'string', 'min:9', 'unique:users,phone' . $request->user()->id],
-            'avatar' => 'image|mimes:jpeg,png,jpg,webp'
+            'avatar' => 'image|mimes:jpeg,png,jpg,webp|max:2000'
         ];
 
         $user = $request->user();
