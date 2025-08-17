@@ -19,19 +19,27 @@ class ProfileController extends Controller
     {
         $rules = [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'min:9', 'unique:users,phone' . $request->user()->id],
-            'avatar' => 'image|mimes:jpeg,png,jpg,webp|max:2000'
+            'phone' => ['required', 'string', 'min:9', 'unique:users,phone' . $request->user()->id]
         ];
 
         $user = $request->user();
+        $avatar = null;
+        $path = null;
 
         if (!$user->isOauthUser()) {
             $rules['email'] = ['required', 'string', 'email', 'max:255', 'unique:users,email' . $user->id];
         }
 
+        if ($request->hasFile('avatar')) {
+            $rules['avatar'] = 'image|mimes:jpeg,png,jpg,webp|max:2000';
+        }
+
         $data = $request->validate($rules);
-        $avatar = $request->file('avatar');
-        $path = $avatar->store('images/users_avatars', 'public');
+
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $path = $avatar->store('images/users_avatars', 'public');
+        }
 
         $user_data = [
             'name' => $data['name'],
