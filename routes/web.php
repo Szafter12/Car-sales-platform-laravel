@@ -31,4 +31,4 @@ Route::get('/car/{car}', [CarController::class, 'show'])->name('car.show');
 Route::post('watchlist/{car}', [WatchlistController::class, 'storeDestroy'])
     ->name('watchlist.storeDestroy');
 
-require_once __DIR__ . "/auth.php";
+require __DIR__ . "/auth.php";
