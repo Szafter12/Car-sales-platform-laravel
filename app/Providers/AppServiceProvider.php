@@ -26,14 +26,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::defaultView('pagination');
-        View::share('year', date('Y'));
-
-        Gate::define('update-car', function (User $user, Car $car) {
-            return $user->id === $car->user_id ? Response::allow() : Response::denyWithStatus(404);
-        });
-
-        Gate::define('delete-car', function (User $user, Car $car) {
-            return $user->id === $car->user_id ? Response::allow() : Response::denyWithStatus(404);
-        });
     }
 }

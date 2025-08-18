@@ -6,6 +6,7 @@ use App\Models\FuelType;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\Component;
 
 class SelectFuelType extends Component
@@ -14,7 +15,9 @@ class SelectFuelType extends Component
 
     public function __construct()
     {
-        $this->fuels = FuelType::orderBy('name')->get();
+        $this->fuels = Cache::rememberForever('fuel', function () {
+            return FuelType::orderBy('name')->get();
+        }); 
     }
 
     /**
