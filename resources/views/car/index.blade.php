@@ -68,7 +68,7 @@
                                 @empty
                                     <tr class="text-center p-large">
                                         <td colspan="5" rowspan="2">
-                                            You don'y have cars yet. <a href="{{ route('car.create') }}">Add new car</a>
+                                            You don't have cars yet. <a href="{{ route('car.create') }}">Add new car</a>
                                         </td>
                                     </tr>
                                 @endforelse
