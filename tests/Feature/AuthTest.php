@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\User;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -49,4 +49,71 @@ class AuthTest extends TestCase
 
         $response->assertOk();
     }
+
+    public function test_sholud_not_login_with_wrong_credentials(): void {
+        $user = User::factory()->create([
+            'email' => 'essa@essa.com',
+            'password' => bcrypt('password')
+        ]);
+        /** @var \Illuminate\Testing\TestResponse $response */
+        $response = $this->post(route('login.store'), [
+            'email'=> $user->email,
+            'password'=> '123422'
+        ]);
+
+        $response->assertStatus(302)
+        ->assertSessionHasErrors(['email']);
+        // lub ->assertInvalid(['email'])
+    }
+
+     public function test_sholud_login_with_correct_credentials(): void {
+        $user = User::factory()->create([
+            'email' => 'essa@essa.com',
+            'password' => bcrypt('password')
+        ]);
+        /** @var \Illuminate\Testing\TestResponse $response */
+        $response = $this->post(route('login.store'), [
+            'email'=> $user->email,
+            'password'=> 'password'
+        ]);
+
+        $response->assertStatus(302)
+        ->assertRedirectToRoute('home')
+        ->assertSessionHas(['success']);
+    }
+
+    public function test_sholud_not_register_with_wrong_credentials(): void {
+        $user = User::factory()->create([
+            'email' => 'essa@essa.com',
+            'password' => bcrypt('password')
+        ]);
+        /** @var \Illuminate\Testing\TestResponse $response */
+        $response = $this->post(route('login.store'), [
+            'email'=> $user->email,
+            'password'=> '123422'
+        ]);
+
+        $response->assertStatus(302)
+        ->assertSessionHasErrors(['email']);
+        // lub ->assertInvalid(['email'])
+    }
+
+     public function test_sholud_login_with_correct_credentials(): void {
+        $user = User::factory()->create([
+            'email' => 'essa@essa.com',
+            'password' => bcrypt('password')
+        ]);
+        /** @var \Illuminate\Testing\TestResponse $response */
+        $response = $this->post(route('login.store'), [
+            'email'=> $user->email,
+            'password'=> 'password'
+        ]);
+
+        $response->assertStatus(302)
+        ->assertRedirectToRoute('home')
+        ->assertSessionHas(['success']);
+    }
+    
 }
+
+
