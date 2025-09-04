@@ -82,36 +82,54 @@ class AuthTest extends TestCase
         ->assertSessionHas(['success']);
     }
 
-    public function test_sholud_not_register_with_wrong_credentials(): void {
-        $user = User::factory()->create([
-            'email' => 'essa@essa.com',
-            'password' => bcrypt('password')
-        ]);
+    public function test_sholud_not_register_with_empty_fields(): void {
         /** @var \Illuminate\Testing\TestResponse $response */
-        $response = $this->post(route('login.store'), [
-            'email'=> $user->email,
-            'password'=> '123422'
+        $response = $this->post(route('signup.store'), [
+            'name' => '',
+            'email' => '',
+            'phone' => '',
+            'password' => '',
+            'password_confirmation' => ''
         ]);
 
         $response->assertStatus(302)
-        ->assertSessionHasErrors(['email']);
+        ->assertSessionHasErrors(['email', 'phone', 'password', 'name']);
         // lub ->assertInvalid(['email'])
     }
 
-     public function test_sholud_login_with_correct_credentials(): void {
-        $user = User::factory()->create([
-            'email' => 'essa@essa.com',
-            'password' => bcrypt('password')
-        ]);
+     public function test_sholud_register_with_correct_credentials(): void {
         /** @var \Illuminate\Testing\TestResponse $response */
-        $response = $this->post(route('login.store'), [
-            'email'=> $user->email,
-            'password'=> 'password'
+        $response = $this->post(route('signup.store'), [
+            'name' => 'Essa',
+            'email' => 'essa@essa.com',
+            'phone' => '123',
+            'password' => 'lAigkdfha123.0--caw2',
+            'password_confirmation' => 'lAigkdfha123.0--caw2'
         ]);
 
         $response->assertStatus(302)
         ->assertRedirectToRoute('home')
         ->assertSessionHas(['success']);
+    }
+
+    public function test_sholud_not_register_with_existing_email(): void {
+        $user = User::factory()->create([
+            'name' => 'essa',
+            'email' => 'kbauch@example.net',
+            'phone' => '121234564',
+            'password'=> 'essaA1/.2018924asa',
+        ]);
+        /** @var \Illuminate\Testing\TestResponse $response */
+        $response = $this->post(route('signup.store'), [
+            'name' => 'Essa',
+            'email' => 'kbauch@example.net',
+            'phone' => '123',
+            'password' => 'lAigkdfha123.0--caw2',
+            'password_confirmation' => 'lAigkdfha123.0--caw2'
+        ]);
+
+        $response->assertStatus(302)
+        ->assertSessionHasErrors(['email']);
     }
     
 }
