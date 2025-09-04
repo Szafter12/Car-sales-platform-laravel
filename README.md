@@ -1,8 +1,6 @@
-# Car Sales Platform — Laravel 12 Demo
+# Car Sales Platform — Laravel 12 
 
-A simple **car sales platform** built with **Laravel 12**. This repository is a learning/demo project that showcases the Laravel ecosystem: routing, controllers, Eloquent models, Blade views, validation, database migrations, asset bundling with Vite, and automated tests.
-
-> **Goal:** Provide a clean, documented codebase that helps you (or your reviewers) understand how a typical CRUD web app is structured in Laravel and how to run it locally.
+A **car sales platform** built with **Laravel 12**. This repository is a learning/demo project that showcases the Laravel ecosystem: routing, controllers, Eloquent models, Blade views, validation, database migrations, asset bundling with Vite, and automated tests.
 
 ---
 
@@ -246,36 +244,10 @@ php artisan test
 
 ---
 
-## Roadmap
-
-- [ ] Add domain models for cars, brands, models, and listings
-- [ ] CRUD UI for managing listings (create, edit, delete)
-- [ ] Image galleries / upload & resize
-- [ ] Search & filters (brand, price, mileage, year, transmission)
-- [ ] Authentication & authorization (buyers vs. sellers / admin)
-- [ ] Seeders with realistic demo data
-- [ ] API endpoints for listings (read-only first)
-- [ ] Pagination, sorting, and server-side validation tests
-- [ ] CI (GitHub Actions) for tests & static checks
-
-> PRs to tick off items above are welcome!
-
----
-
-## Contributing
-
-1. Fork the repo & create a feature branch
-2. Follow PSR-12 for PHP and keep controllers lean
-3. Write or update tests for your changes
-4. Open a pull request with a clear description
-
----
-
 ## Acknowledgements
 
 - [Laravel Documentation](https://laravel.com/docs)
 - [Vite](https://vitejs.dev/)
-- Everyone who shares Laravel tutorials and best practices ❤️
 
 ---
 
