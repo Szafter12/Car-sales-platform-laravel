@@ -5,8 +5,7 @@ A **car sales platform** built with **Laravel 12**. This repository is a learnin
 ---
 
 ## Demo
-
-<a href="https://jakubpachut.duckdns.org" target="_blank">Link to live demo here </a>
+Hosted on my own vps server: <a href="https://jakubpachut.duckdns.org" target="_blank">Link to live demo here </a>
 
 ---
 
