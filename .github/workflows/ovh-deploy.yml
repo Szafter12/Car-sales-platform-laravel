@@ -51,8 +51,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            sudo chown -R $USER:www-data /var/www/html
-            sudo chmod -R 766 /var/www/html
+            
             cd /var/www/html/Car-sales-platform-laravel
             git fetch --all
             if git rev-parse -q --verify "refs/tags/${{ github.event.release.tag_name }}"; then
@@ -69,3 +68,60 @@ jobs:
             php artisan view:cache
             sudo chown -R www-data:www-data /var/www/html
             sudo chmod -R 766 /var/www/html
+
+name: OVHDeploy
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.4"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Deploy to server via SSH
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          port: ${{ secrets.SSH_PORT }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo chown -R $USER:www-data /var/www/html
+            sudo chmod -R 777 /var/www/html
+            cd /var/www/html/Car-sales-platform-laravel
+            git fetch --all --tags
+            if git rev-parse -q --verify "refs/tags/${{ github.event.release.tag_name }}"; then
+              git checkout ${{ github.event.release.tag_name }}
+            else
+              git checkout master
+            fi
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+            npm ci
+            npm run build
+            php artisan config:clear
+            php artisan cache:clear
+            php artisan route:clear
+            php artisan view:clear
+            php artisan key:generate --ansi
+            php artisan migrate --force
+            php artisan storage:link
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            sudo chown -R www-data:www-data /var/www/html
+            sudo find . -type d -exec chmod 755 {} \;
+            sudo find . -type f -exec chmod 644 {} \;
