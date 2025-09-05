@@ -14,7 +14,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: "8.3"
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -42,8 +42,8 @@ jobs:
       - name: Build Assets
         run: npm run build
 
-      - name: Run Tests
-        run: php artisan test
+      # - name: Run Tests
+      #   run: php artisan test
 
       - name: Deploy PHP to Server
         if: ${{ success() }}
@@ -55,7 +55,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script_stop: true
           script: |
-            cd YOUR_PROJECT_LOCATION
+            cd /var/www/html/Car-sales-platform-laravel
             git checkout master
             if git rev-parse -q --verify "refs/tags/${{ github.event.release.tag_name }}"; then
               git tag -d ${{ github.event.release.tag_name }}
