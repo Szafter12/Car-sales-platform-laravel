@@ -21,8 +21,6 @@ class SocialiteController extends Controller
 
             if ($provider === 'google') {
                 $field = 'google_id';
-            } elseif ($provider === 'facebook') {
-                $field = 'facebook_id';
             }
 
             $user = Socialite::driver($provider)->stateless()->user();

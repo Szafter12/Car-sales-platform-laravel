@@ -22,7 +22,6 @@
                     @if ($socialAuth)
                         <div class="grid grid-cols-2 gap-1 social-auth-buttons">
                             <x-google-button />
-                            <x-facebook-button />
                         </div>
                     @endif
 
