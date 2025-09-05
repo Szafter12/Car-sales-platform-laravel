@@ -52,7 +52,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script_stop: true
           script: |
-            sudo -i
+            sudo chown -R $USER:www-data /var/www/html
+            sudo chmod -R 766 /var/www/html
             cd /var/www/html/Car-sales-platform-laravel
             git checkout master
             if git rev-parse -q --verify "refs/tags/${{ github.event.release.tag_name }}"; then
@@ -67,3 +68,5 @@ jobs:
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
+            sudo chown -R www-data:www-data /var/www/html
+            sudo chmod -R 766 /var/www/html
