@@ -24,22 +24,22 @@ jobs:
       - name: Create .env
         run: cp .env.example .env
 
-      - name: Install composer Dependencies
+      - name: Install composer dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-      - name: Set Application Encryption Key
+      - name: Set application encryption key
         run: php artisan key:generate --ansi
 
-      - name: Create Storage Link
+      - name: Create storage link
         run: php artisan storage:link
 
-      - name: Run Migrations
+      - name: Run migrations
         run: php artisan migrate --force
 
       - name: Install node dependencies
         run: npm ci
 
-      - name: Build Assets
+      - name: Build assets
         run: npm run build
 
       - name: Deploy PHP to Server
@@ -50,18 +50,17 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           port: ${{ secrets.SSH_PORT }}
           key: ${{ secrets.SSH_KEY }}
-          script_stop: true
           script: |
             sudo chown -R $USER:www-data /var/www/html
             sudo chmod -R 766 /var/www/html
             cd /var/www/html/Car-sales-platform-laravel
-            git checkout master
-            if git rev-parse -q --verify "refs/tags/${{ github.event.release.tag_name }}"; then
-              git tag -d ${{ github.event.release.tag_name }}
-            fi
             git fetch --all
-            git checkout ${{ github.event.release.tag_name }}
-            composer install
+            if git rev-parse -q --verify "refs/tags/${{ github.event.release.tag_name }}"; then
+              git checkout ${{ github.event.release.tag_name }}
+            else
+              git checkout master
+            fi
+            composer install --no-interaction --prefer-dist --optimize-autoloader
             npm ci
             npm run build
             php artisan migrate --force
