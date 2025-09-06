@@ -1,6 +1,6 @@
 # Car Sales Platform - Laravel 12
 
-![Car Sales Platform Banner](screenshot.png)
+![Car Sales Platform Banner](screenshot1.png)
 
 A comprehensive car sales platform built using the Laravel 12 framework. This project serves as a capstone for a Laravel 12 course and is primarily developed for learning purposes. It demonstrates key Laravel concepts while providing a foundation for a functional car sales application, including user authentication, car listings, and more.
 
