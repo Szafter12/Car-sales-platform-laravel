@@ -1,259 +1,165 @@
-# Car Sales Platform — Laravel 12 
+# Car Sales Platform - Laravel 12
 
-A **car sales platform** built with **Laravel 12**. This repository is a learning/demo project that showcases the Laravel ecosystem: routing, controllers, Eloquent models, Blade views, validation, database migrations, asset bundling with Vite, and automated tests.
+![Car Sales Platform Banner](https://via.placeholder.com/1280x300?text=Car+Sales+Platform+Laravel+12)
 
----
+A comprehensive car sales platform built using the Laravel 12 framework. This project serves as a capstone for a Laravel 12 course and is primarily developed for learning purposes. It demonstrates key Laravel concepts while providing a foundation for a functional car sales application, including user authentication, car listings, and more.
 
 ## Demo
-Hosted on my own vps server: https://car-sales-platform.duckdns.org/
 
----
+Check out the live demo hosted on my personal VPS server:  
+[https://car-sales-platform.duckdns.org/](https://car-sales-platform.duckdns.org/)
 
-## Table of Contents
+## Purpose and Learning Goals
 
-- [Tech Stack](#tech-stack)
-- [Project Highlights](#project-highlights)
-- [Quick Start](#quick-start)
-  - [Prerequisites](#prerequisites)
-  - [Clone & Install](#clone--install)
-  - [Environment Setup](#environment-setup)
-  - [Create the Database](#create-the-database)
-  - [Run Migrations (and Seeders)](#run-migrations-and-seeders)
-  - [Build Frontend Assets](#build-frontend-assets)
-  - [Serve the App](#serve-the-app)
-- [Project Structure](#project-structure)
-- [Core Laravel Concepts Used](#core-laravel-concepts-used)
-- [Common Artisan Commands](#common-artisan-commands)
-- [Testing](#testing)
-- [Troubleshooting](#troubleshooting)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [Acknowledgements](#acknowledgements)
+This repository is a hands-on learning project to explore the Laravel ecosystem. Key learning objectives include:
+- Understanding MVC architecture in Laravel.
+- Implementing routing, controllers, and Eloquent models.
+- Working with Blade templating for dynamic views.
+- Handling form validation and database migrations.
+- Integrating frontend asset bundling with Vite.
+- Setting up automated testing with PHPUnit.
+- Deploying a Laravel application to a VPS server.
 
----
+The project is designed to be extensible, allowing for experimentation and addition of advanced features.
 
 ## Tech Stack
 
-- **Framework:** Laravel 12.x (PHP framework)
-- **Language:** PHP 8.2+
-- **Templating:** Blade
-- **Frontend tooling:** Vite (NPM)
-- **Database:** MySQL (or SQLite for quick local runs)
-- **Testing:** PHPUnit / Pest-compatible (`phpunit.xml` present)
+- **Framework**: Laravel 12.x
+- **Language**: PHP 8.2+
+- **Templating**: Blade
+- **Frontend Tooling**: Vite (with NPM for asset management)
+- **Database**: MySQL (recommended) or SQLite (for local development)
+- **Testing**: PHPUnit / Pest-compatible
+- **Other Tools**: Composer for PHP dependencies, Node.js for JS dependencies
 
-> The repository already contains the standard Laravel layout (e.g., `app/`, `bootstrap/`, `config/`, `database/`, `public/`, `resources/`, `routes/`, `storage/`, `tests/`) plus `composer.json`, `package.json`, `vite.config.js`, `.env.example`, and `phpunit.xml` so you can run it locally right away.
+## Key Features and Functionalities
 
----
+This demo application showcases a basic car sales platform with the following functionalities:
+- **User Authentication**: Registration, login, and logout using Laravel's built-in authentication system.
+- **Car Listings**: Create, read, update, and delete (CRUD) operations for car listings, including details like brand, model, price, and description.
+- **Brands and Models Management**: Eloquent models for managing car brands and models with relationships.
+- **Image Uploads**: Support for uploading and displaying car images (stored in Laravel's storage system).
+- **Search and Filters**: Basic filtering options for car listings (e.g., by price, brand, or year).
+- **RESTful API Routes**: Defined in `routes/web.php` for clean, maintainable endpoints.
+- **Form Validation**: Secure input handling using Laravel's validation rules and form requests.
+- **Database Seeding**: Optional seeders for populating the database with sample data.
+- **Responsive UI**: Server-rendered Blade views with Vite-bundled CSS and JS for a modern look.
 
-## Project Highlights
+## GitHub Actions
 
-- Clean, conventional **MVC** structure (Controllers, Models, Views)
-- **RESTful routes** in `routes/web.php`
-- **Eloquent ORM** for database access and relationships
-- **Blade** templates for server-rendered UI
-- **Validation** with Form Requests / controller validation
-- **Vite**-powered asset bundling (`npm run dev` / `npm run build`)
-- Ready for **tests** via PHPUnit (`php artisan test`)
+This repository is configured with GitHub Actions for automated workflows, including:
+- **CI/CD Pipeline**: Runs tests, lints code, and deploys to the VPS on push to the main branch.
+- **Testing Workflow**: Automatically executes PHPUnit tests on pull requests and commits.
+- **Dependency Checks**: Ensures compatibility and security of Composer and NPM dependencies.
 
-> Since this is a demo app, you can freely extend it with features like “listings”, “brands/models”, “images”, “filters” and more.
-
----
+Workflow configurations can be found in the `.github/workflows/` directory.
 
 ## Quick Start
 
 ### Prerequisites
+- PHP 8.2+ (with extensions: OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, Fileinfo, Curl, DOM)
+- Composer (latest version)
+- Node.js & NPM (LTS recommended)
+- MySQL 8+ or SQLite
 
-- **PHP**: 8.2 or newer (with common extensions: OpenSSL, PDO, Mbstring, Tokenizer, XML, Ctype, Fileinfo, Curl, DOM)
-- **Composer**: latest
-- **Node.js** & **npm** (or Bun): latest LTS recommended
-- **Database**: MySQL 8+ (or SQLite)
+### Installation
+1. Clone the repository:
+   ```
+   git clone https://github.com/Szafter12/Car-sales-platform-laravel.git
+   cd Car-sales-platform-laravel
+   ```
 
-### Clone & Install
+2. Install PHP dependencies:
+   ```
+   composer install
+   ```
 
-```bash
-# 1) Clone
-git clone https://github.com/Szafter12/Car-sales-platform-laravel.git
-cd Car-sales-platform-laravel
+3. Install JS dependencies:
+   ```
+   npm install
+   ```
 
-# 2) Install PHP deps
-composer install
+4. Set up the environment:
+   ```
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   Update `.env` with your database details (e.g., MySQL or SQLite).
 
-# 3) Install JS deps
-npm install
+5. Create and migrate the database:
+   ```
+   php artisan migrate
+   php artisan db:seed  # Optional: Seed with sample data
+   ```
+
+6. Build frontend assets:
+   ```
+   npm run dev  # For development with hot reloading
+   # or
+   npm run build  # For production
+   ```
+
+7. Serve the application:
+   ```
+   php artisan serve
+   ```
+   Visit [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
+
+For storage links (e.g., image uploads):
 ```
-
-> If Composer complains about your PHP version, update PHP to >= 8.2. Avoid using `--ignore-platform-reqs` in real projects.
-
-### Environment Setup
-
-Copy the example environment and generate an app key:
-
-```bash
-cp .env.example .env
-php artisan key:generate
+php artisan storage:link
 ```
-
-Update `.env` with your local settings, e.g.:
-
-```dotenv
-APP_NAME="Car Sales Platform"
-APP_ENV=local
-APP_DEBUG=true
-APP_URL=http://127.0.0.1:8000
-
-# Database (MySQL example)
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=car_sales
-DB_USERNAME=root
-DB_PASSWORD=secret
-
-# Or use SQLite for a zero-config DB:
-# DB_CONNECTION=sqlite
-# (then create: database/database.sqlite)
-```
-
-### Create the Database
-
-**MySQL:** Create a database named `car_sales` (or match your `.env`).  
-**SQLite:** Create a file:
-
-```bash
-mkdir -p database
-touch database/database.sqlite
-```
-
-And set `DB_CONNECTION=sqlite` in `.env` (comment out other DB_* lines).
-
-### Run Migrations (and Seeders)
-
-```bash
-php artisan migrate
-# Optional: if you add seeders in the future
-php artisan db:seed
-```
-
-If you need a fresh reset during development:
-
-```bash
-php artisan migrate:fresh --seed
-```
-
-### Build Frontend Assets
-
-```bash
-# Dev (watches for changes)
-npm run dev
-
-# Production build
-npm run build
-```
-
-If you use Blade templates with Vite, make sure your layout includes `@vite([...])` for your entry files (e.g., `resources/js/app.js`, `resources/css/app.css`).
-
-### Serve the App
-
-You can use Laravel’s built-in server:
-
-```bash
-php artisan serve
-# Visit http://127.0.0.1:8000
-```
-
----
 
 ## Project Structure
 
-A quick overview of the repository layout (key folders/files):
-
 ```
 .
-├── app/                 # Application code (Models, Http/Controllers, etc.)
-├── bootstrap/           # App bootstrap and cache
+├── app/                 # Core application logic (Controllers, Models, etc.)
+├── bootstrap/           # Bootstrap files and app cache
 ├── config/              # Configuration files
-├── database/            # Migrations (and optionally factories/seeders)
-├── public/              # Web server document root (index.php, assets)
-├── resources/           # Blade views, CSS/JS (Vite) and other assets
-├── routes/              # Route definitions (web.php, etc.)
-├── storage/             # Logs, compiled views, file storage
-├── tests/               # Automated tests
-├── .env.example         # Example environment file
+├── database/            # Migrations, factories, and seeders
+├── public/              # Public assets and entry point (index.php)
+├── resources/           # Views (Blade), CSS/JS sources
+├── routes/              # Route definitions (web.php, api.php)
+├── storage/             # Logs, file uploads, and cached views
+├── tests/               # Unit and feature tests
+├── .env.example         # Sample environment configuration
 ├── composer.json        # PHP dependencies
 ├── package.json         # JS dependencies
-├── vite.config.js       # Vite configuration
-└── phpunit.xml          # PHPUnit configuration
+├── vite.config.js       # Vite bundler config
+└── phpunit.xml          # Testing configuration
 ```
-
-> Tip: To serve user-uploaded files from `storage/app/public`, run `php artisan storage:link` which symlinks to `public/storage`.
-
----
-
-## Core Laravel Concepts Used
-
-- **Routing:** `routes/web.php` defines your HTTP endpoints for the web UI. Group routes with middleware when needed.
-- **Controllers:** Handle request/response logic and call the domain layer (models/services).
-- **Models & Eloquent:** Encapsulate business/data logic; define relationships and query scopes.
-- **Migrations:** Version your database schema so the project is reproducible.
-- **Validation:** Keep controllers lean by validating with form requests or `validate()`.
-- **Views (Blade):** Server-rendered pages with Blade components/partials.
-- **Assets (Vite):** Modern, fast asset pipeline with hot reloading in dev.
-- **Testing:** Use `php artisan test` to run unit/feature tests and keep regressions away.
-
----
-
-## Common Artisan Commands
-
-```bash
-# Generate resources
-php artisan make:model Car -mcr        # model + migration + controller (resource)
-php artisan make:request StoreCarRequest
-php artisan make:seeder CarSeeder
-
-# Database
-php artisan migrate
-php artisan migrate:fresh --seed
-
-# Cache & config
-php artisan optimize:clear
-php artisan config:cache
-php artisan route:list
-
-# Testing
-php artisan test
-```
-
----
 
 ## Testing
 
-- Run the test suite:
-
-```bash
+Run the test suite:
+```
 php artisan test
 # or
 ./vendor/bin/phpunit
 ```
 
-- Configure test database in `.env.testing` if needed (Laravel picks it up automatically when running tests).
+Tests cover core functionalities like routes, controllers, and models.
 
----
+## Common Commands
+
+- Generate resources: `php artisan make:model Car -mcr`
+- Migrate database: `php artisan migrate`
+- Clear cache: `php artisan optimize:clear`
+- List routes: `php artisan route:list`
 
 ## Troubleshooting
 
-- **Composer platform errors:** Ensure PHP ≥ 8.2 and required extensions are enabled.
-- **SQL connection fails:** Check `.env` credentials and that MySQL is running; for SQLite, point to an existing file.
-- **Assets not loading in prod:** Run `npm run build` and ensure Blade includes `@vite` with the correct entry points.
-- **404 on routes:** Run `php artisan route:list` to confirm routes are registered.
-- **Storage uploads not visible:** Run `php artisan storage:link`.
-
----
+- **PHP Version Issues**: Ensure PHP >= 8.2; avoid `--ignore-platform-reqs`.
+- **Database Connection**: Verify `.env` settings; for SQLite, create `database/database.sqlite`.
+- **Assets Not Loading**: Run `npm run build` and check `@vite` directives in Blade layouts.
+- **404 Errors**: Use `php artisan route:list` to verify routes.
+- **Storage Issues**: Run `php artisan storage:link` for file visibility.
 
 ## Acknowledgements
 
-- [Laravel Documentation](https://laravel.com/docs)
-- [Vite](https://vitejs.dev/)
+This project is inspired by Laravel's official documentation and community resources. It's open for contributions—feel free to fork, extend, or suggest improvements!
 
----
+## License
 
-_This project is for **learning purposes**. Feel free to extend it, refactor it, and experiment!_
+This project is open-source and licensed under the [MIT License](LICENSE).
