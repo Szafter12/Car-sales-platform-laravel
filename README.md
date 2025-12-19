@@ -6,7 +6,7 @@ A comprehensive car sales platform built using the Laravel 12 framework. This pr
 
 ## Demo
 
-Check out the live demo hosted on my personal VPS server:  
+Check out the live demo hosted on my VPS:  
 [https://car-sales-platform.duckdns.org/](https://car-sales-platform.duckdns.org/)
 
 ## Purpose and Learning Goals
