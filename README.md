@@ -4,11 +4,6 @@
 
 A comprehensive car sales platform built using the Laravel 12 framework. This project serves as a capstone for a Laravel 12 course and is primarily developed for learning purposes. It demonstrates key Laravel concepts while providing a foundation for a functional car sales application, including user authentication, car listings, and more.
 
-## Demo
-
-Check out the live demo hosted on my VPS:  
-[https://car-sales-platform.duckdns.org/](https://car-sales-platform.duckdns.org/)
-
 ## Purpose and Learning Goals
 
 This repository is a hands-on learning project to explore the Laravel ecosystem. Key learning objectives include:
