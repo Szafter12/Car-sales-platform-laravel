@@ -105,26 +105,6 @@ For storage links (e.g., image uploads):
 php artisan storage:link
 ```
 
-## Project Structure
-
-```
-.
-├── app/                 # Core application logic (Controllers, Models, etc.)
-├── bootstrap/           # Bootstrap files and app cache
-├── config/              # Configuration files
-├── database/            # Migrations, factories, and seeders
-├── public/              # Public assets and entry point (index.php)
-├── resources/           # Views (Blade), CSS/JS sources
-├── routes/              # Route definitions (web.php, api.php)
-├── storage/             # Logs, file uploads, and cached views
-├── tests/               # Unit and feature tests
-├── .env.example         # Sample environment configuration
-├── composer.json        # PHP dependencies
-├── package.json         # JS dependencies
-├── vite.config.js       # Vite bundler config
-└── phpunit.xml          # Testing configuration
-```
-
 ## Testing
 
 Run the test suite:
@@ -135,26 +115,3 @@ php artisan test
 ```
 
 Tests cover core functionalities like routes, controllers, and models.
-
-## Common Commands
-
-- Generate resources: `php artisan make:model Car -mcr`
-- Migrate database: `php artisan migrate`
-- Clear cache: `php artisan optimize:clear`
-- List routes: `php artisan route:list`
-
-## Troubleshooting
-
-- **PHP Version Issues**: Ensure PHP >= 8.2; avoid `--ignore-platform-reqs`.
-- **Database Connection**: Verify `.env` settings; for SQLite, create `database/database.sqlite`.
-- **Assets Not Loading**: Run `npm run build` and check `@vite` directives in Blade layouts.
-- **404 Errors**: Use `php artisan route:list` to verify routes.
-- **Storage Issues**: Run `php artisan storage:link` for file visibility.
-
-## Acknowledgements
-
-This project is inspired by Laravel's official documentation and community resources. It's open for contributions—feel free to fork, extend, or suggest improvements!
-
-## License
-
-This project is open-source and licensed under the [MIT License](LICENSE).
