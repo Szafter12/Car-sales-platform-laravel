@@ -7,7 +7,7 @@ A comprehensive car sales platform built using the Laravel 12 framework. This pr
 ## Purpose and Learning Goals
 
 This repository is a hands-on learning project to explore the Laravel ecosystem. Key learning objectives include:
-- Understanding MVC architecture in Laravel.
+- Understanding MVC architecture.
 - Implementing routing, controllers, and Eloquent models.
 - Working with Blade templating for dynamic views.
 - Handling form validation and database migrations.
@@ -19,8 +19,8 @@ The project is designed to be extensible, allowing for experimentation and addit
 
 ## Tech Stack
 
-- **Framework**: Laravel 12.x
-- **Language**: PHP 8.2+
+- **Framework**: Laravel 12
+- **Languages**: PHP 8.2+, JavaScript
 - **Templating**: Blade
 - **Frontend Tooling**: Vite (with NPM for asset management)
 - **Database**: MySQL (recommended) or SQLite (for local development)
